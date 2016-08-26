@@ -1,1 +1,7 @@
-cddddddddddddddddd
+name: Hazelcast Cluster
+description: |
+  Hazelcast Cluster
+version: 1.0
+category: Clustering
+maintainer: "Prashant Pratap Singh <singh.pp7@gmail.com>"
+minimum_rancher_version: v0.59.0
