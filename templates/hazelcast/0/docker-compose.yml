@@ -1,41 +1,21 @@
-.catalog:
-  name: Hazelcast Cluster
-  version: 1.0
-  description: |
-    Hazelcast Cluster with UI.
-  minimum_rancher_version: v0.56.0
-  maintainer: "Prashant Pratap Singh singh.pp7@gmail.com>"
-  uuid: zk-0
-  questions:
-    - variable: "hz_scale"
-      description: "Number of Hazelcast nodes."
-      label: "Hz Nodes:"
-      required: true
-      default: 2
-      type: "int"
-    - variable: "hz_init_frac"
-      description: "CMS Initiating Occupancy Fraction"
-      label: "CMS Initiating Occupancy Fraction:"
-      required: true
-      default: 60
-      type: "int"
-    - variable: "hz_max_heap_free"
-      description: "Max Heap Free Ratio for Hazelcast loader"
-      label: "Max Heap Free Ratio :"
-      required: true
-      default: 50 
-      type: "int"
-    - variable: "hz_min_heap_free"
-      description: "Min Heap Free Ratio for Hazelcast loader"
-      label: "Min Heap Free Ratio:"
-      required: true
-      default: 20 
-      type: "int"
-    - variable: "hz_heap_size"
-      description: "Maximum heap size for Hazelcast loader"
-      label: "Hz Heap (GB):"
-      required: true
-      default: 25 
-      type: "string"
+Hazelcast-Management-Center:
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/hazlecast
+  labels:
+   io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  restart: always
+  ports:
+   - 8888:8080
+  command: bash /usr/local/tomcat/bin/start-tomcat.sh start  
 Hazelcast:
- scale: ${hz_scale}
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/hazlecast-service
+  labels:
+   io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+  restart: always
+  command: bash /usr/local/aeris_lib/start-hazelcast.sh ${stack_name}_${service_name} ${hz_scale} "Hazelcast-Management-Center"
+  links: 
+   - Hazelcast-Management-Center:Hazelcast-Management-Center
+  environment:
+  - JVMFLAGS=-Xmx${hz_heap_size}g
+  - INITOCFRACTION=${hz_init_frac}
+  - MAXHEAPFREERATIO=${hz_max_heap_free}
+  - MINHEAPFREERATIO=${hz_min_heap_free}
