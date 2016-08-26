@@ -13,6 +13,24 @@
       required: true
       default: 2
       type: "int"
+    - variable: "hz_init_frac"
+      description: "CMS Initiating Occupancy Fraction"
+      label: "CMS Initiating Occupancy Fraction:"
+      required: true
+      default: 60
+      type: "int"
+    - variable: "hz_max_heap_free"
+      description: "Max Heap Free Ratio for Hazelcast loader"
+      label: "Max Heap Free Ratio :"
+      required: true
+      default: 50 
+      type: "int"
+    - variable: "hz_min_heap_free"
+      description: "Min Heap Free Ratio for Hazelcast loader"
+      label: "Min Heap Free Ratio:"
+      required: true
+      default: 20 
+      type: "int"
     - variable: "hz_heap_size"
       description: "Maximum heap size for Hazelcast loader"
       label: "Hz Heap (GB):"
