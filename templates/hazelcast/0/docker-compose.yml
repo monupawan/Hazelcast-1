@@ -11,7 +11,7 @@ Hazelcast:
   labels:
    io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
   restart: always
-  command: bash /usr/local/aeris_lib/start-hazelcast.sh "$${stack_name}"_"$${service_name}" ${hz_scale} "Hazelcast-Management-Center"
+  command: bash /usr/local/aeris_lib/start-hazelcast.sh hazelcast_Hazelcast ${hz_scale} "Hazelcast-Management-Center"
   links: 
    - Hazelcast-Management-Center:Hazelcast-Management-Center
   environment:
