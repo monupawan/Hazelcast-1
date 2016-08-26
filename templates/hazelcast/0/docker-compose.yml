@@ -1,1 +1,41 @@
-ccccccccccccccccccc
+.catalog:
+  name: Hazelcast Cluster
+  version: 1.0
+  description: |
+    Hazelcast Cluster with UI.
+  minimum_rancher_version: v0.56.0
+  maintainer: "Prashant Pratap Singh singh.pp7@gmail.com>"
+  uuid: zk-0
+  questions:
+    - variable: "hz_scale"
+      description: "Number of Hazelcast nodes."
+      label: "Hz Nodes:"
+      required: true
+      default: 2
+      type: "int"
+    - variable: "hz_init_frac"
+      description: "CMS Initiating Occupancy Fraction"
+      label: "CMS Initiating Occupancy Fraction:"
+      required: true
+      default: 60
+      type: "int"
+    - variable: "hz_max_heap_free"
+      description: "Max Heap Free Ratio for Hazelcast loader"
+      label: "Max Heap Free Ratio :"
+      required: true
+      default: 50 
+      type: "int"
+    - variable: "hz_min_heap_free"
+      description: "Min Heap Free Ratio for Hazelcast loader"
+      label: "Min Heap Free Ratio:"
+      required: true
+      default: 20 
+      type: "int"
+    - variable: "hz_heap_size"
+      description: "Maximum heap size for Hazelcast loader"
+      label: "Hz Heap (GB):"
+      required: true
+      default: 25 
+      type: "string"
+Hazelcast:
+ scale: ${hz_scale}
