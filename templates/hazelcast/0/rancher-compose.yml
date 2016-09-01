@@ -37,5 +37,5 @@
       required: true
       default: 25 
       type: "string"
-Hazelcast:
- scale: ${hz_scale}
+Hazelcast-Loader:
+ scale: ${hz_scale}-1
